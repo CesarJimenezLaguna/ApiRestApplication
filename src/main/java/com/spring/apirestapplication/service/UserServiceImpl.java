@@ -5,6 +5,9 @@ import com.spring.apirestapplication.dto.user.UserOutDTO;
 import com.spring.apirestapplication.mapper.UserMapper;
 import com.spring.apirestapplication.model.User;
 import com.spring.apirestapplication.repository.IUserRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +33,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserOutDTO deleteUser(UserInDTO userInDTO) {
-        User retrievedUser = userRepository.deleteUserByEmail(userInDTO.getEmail());
+    @Transactional // Nivel Atómico
+    public UserOutDTO deleteUser(String email) {
+        User retrievedUser = userRepository.deleteUserByEmail(email);
         return userMapper.toDTO(retrievedUser);
     }
 }

@@ -32,7 +32,7 @@ public class ApiRestController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<UserOutDTO> deleteUser(@RequestBody UserInDTO userInDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(userInDTO));
+    public ResponseEntity<UserOutDTO> deleteUser(@RequestParam String email) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(email));
     }
 }

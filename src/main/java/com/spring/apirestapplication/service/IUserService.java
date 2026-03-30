@@ -8,5 +8,5 @@ public interface IUserService {
 
     UserOutDTO saveUser(UserInDTO userInDTO);
 
-    UserOutDTO deleteUser(UserInDTO userInDTO);
+    UserOutDTO deleteUser(String email);
 }
